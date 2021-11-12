@@ -70,7 +70,10 @@ function barchart(sample) {
         let barData = [trace];
 
         layout = {
-            title: "Top 10 OTU IDs"
+            title: "Top 10 OTU IDs",
+            yaxis: {
+                autorange: 'reversed',
+            }
         }
 
         Plotly.newPlot("bar",barData,layout);
