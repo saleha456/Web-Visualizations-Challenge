@@ -22,6 +22,7 @@ function getMetadata(sample) {
 
         // get demographic key and values from sample
         let demographic = d3.select("#sample-metadata");
+        demographic.html("")
         Object.entries(metadata).forEach(([key, value]) => {
             demographic.append("h5").text(`${key}:${value}`);
         });
@@ -160,7 +161,7 @@ function updateDash() {
 
 
 // Initialized functions
-//
+
 
 getDropDown();
 //init();
