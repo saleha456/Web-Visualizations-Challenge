@@ -18,10 +18,21 @@
 
 function getMetadata(sample) {
     d3.json("samples.json").then((data) => {
+        // filter for selected sample
         let metadata = data.metadata.filter(function(meta) { return meta.id == sample; })[0];
         console.log(metadata)
+
+        // get demographic key and values from sample
+        let demographic = d3.select("#sample-metadata");
+        Object.entries(metadata).forEach(([key, value]) => {
+            demographic.append("h5").text(`${key}:${value}`);
+        });
+
+
     });
 
 };
 
-console.log(getMetadata(940))
+// console.log(getMetadata(940))
+
+getMetadata(940)
