@@ -28,9 +28,6 @@ function getMetadata(sample) {
     });
 };
 
-// console.log(getMetadata(940))
-
-getMetadata(940)
 
 
 // Charts Function
@@ -123,12 +120,12 @@ function charts(sample) {
     } )
 };
 
-charts(940);
+
 
 
 // Dropdown Menu Function
 
-function getDropDown(ids) {
+function getDropDown() {
 
     let dropDownList = d3.select("#selDataset");
 
@@ -141,4 +138,29 @@ function getDropDown(ids) {
 };
 
 
+// Dropdown On Change Click Event
+
+d3.selectAll("#selDataset").on("change", updateDash);
+
+
+// Run Chart functions on Update
+
+function updateDash() {
+    // Use D3 to select the dropdown menu
+    let dropdownMenu = d3.select("#selDataset");
+    // Assign the value of the dropdown menu option to a variable
+    let dataset = dropdownMenu.property("value");
+    // Use newly assigned value to update charts
+    charts(dataset);
+    getMetadata(dataset);
+};
+
+
+
+
+
+// Initialized functions
+//
+
 getDropDown();
+//init();
