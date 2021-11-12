@@ -35,11 +35,14 @@ function getMetadata(sample) {
 getMetadata(940)
 
 
-// Bar Chart
+// Charts Function
 
-function barchart(sample) {
+function charts(sample) {
+
+    // Get Data from JSON
     d3.json("samples.json").then((data) => {
-        
+
+        // Get Data for Bar Chart
         let testSamples = data.samples.filter(function(testSample) { return testSample.id == sample; }).sort( function sortDesc(firstParam, secondParam) {
             return secondParam - firstParam})[0] ;
         console.log("Test Samples: ", testSamples);
@@ -71,6 +74,7 @@ function barchart(sample) {
 
         layout = {
             title: "Top 10 OTU IDs",
+            
             yaxis: {
                 autorange: 'reversed',
             }
@@ -79,31 +83,40 @@ function barchart(sample) {
         Plotly.newPlot("bar",barData,layout);
 
 
-        // Plot Bubble Chart
+        //Get Data for Bubble Chart
+        let bubbleSamples = data.samples.filter(function(bubbleSample) { return bubbleSample.id == sample; });
 
-        var trace1 = {
-            x: sample_values,
-            y: otu_ids_str,
+        let otu_ids2 = testSamples.otu_ids
+
+        let sample_values2 = testSamples.sample_values
+
+        let otu_labels2 = testSamples.otu_labels
+
+        // Trace for Bubble Chart
+
+        let trace1 = {
+            x: otu_ids2,
+            y: sample_values2,
             mode: 'markers',
             marker: {
-              size: sample_values,
-              color: otu_ids
+              size: sample_values2,
+              color: otu_ids2
             }
-          };
+        };
           
-          var bubbleData = [trace1];
-          
-          var layout = {
-            title: 'Marker Size',
-            showlegend: false,
-            height: 600,
-            width: 600
-          };
-          
-          Plotly.newPlot("bubble", bubbleData, layout);
+        let bubbleData = [trace1];
+        
+        let layout2 = {
+        title: 'Sample Values by OTU ID',
+        showlegend: false,
+        height: 600,
+        width: 1200
+        };
+        
+        Plotly.newPlot("bubble", bubbleData, layout2);
 
         
     } )
 }
 
-barchart(940)
+charts(940)
