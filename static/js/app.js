@@ -39,6 +39,7 @@ getMetadata(940)
 
 function barchart(sample) {
     d3.json("samples.json").then((data) => {
+        
         let testSamples = data.samples.filter(function(testSample) { return testSample.id == sample; }).sort( function sortDesc(firstParam, secondParam) {
             return secondParam - firstParam})[0] ;
         console.log("Test Samples: ", testSamples);
@@ -46,9 +47,33 @@ function barchart(sample) {
        
         // Slice Samples to get Top 10
         let otu_ids = testSamples.otu_ids.slice(0,10);
+
+        let sample_values = testSamples.sample_values.slice(0,10);
+
+        let otu_labels = testSamples.otu_labels.slice(0,10);
         
         
-        console.log("Top 10: ", otu_ids)
+        console.log("Top 10: ", otu_ids);
+
+        let otu_ids_str =  otu_ids.map(otu => `OTU ${otu}`);
+
+        // Trace for Bar Chart
+
+        let trace = {
+            x: sample_values,
+            y: otu_ids_str,
+            text: otu_labels,
+            type: "bar",
+            orientation: "h"
+        };
+
+        let barData = [trace];
+
+        layout = {
+            title: "Top 10 OTU IDs"
+        }
+
+        Plotly.newPlot("bar",barData,layout);
 
         
     } )
