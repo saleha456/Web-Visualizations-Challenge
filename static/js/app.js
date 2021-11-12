@@ -109,9 +109,7 @@ function charts(sample) {
             title: {
               text: 'OTU ID'
             }
-        },
-        height: 600,
-        width: 1200
+        }
         };
         
         // Plot new bubble chart
@@ -157,11 +155,14 @@ function updateDash() {
 };
 
 
-
+function init() {
+    charts(940);
+    getMetadata(940);
+};
 
 
 // Initialized functions
 
 
 getDropDown();
-//init();
+init();
