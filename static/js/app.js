@@ -8,14 +8,11 @@
 
 
 // Read in JSON data
-
-
-
-
 // d3.json("samples.json").then(function(data){ console.log(data)});
 
 
 
+// Function for Getting Demographic Data
 function getMetadata(sample) {
     d3.json("samples.json").then((data) => {
         // filter for selected sample
@@ -36,3 +33,25 @@ function getMetadata(sample) {
 // console.log(getMetadata(940))
 
 getMetadata(940)
+
+
+// Bar Chart
+
+function barchart(sample) {
+    d3.json("samples.json").then((data) => {
+        let testSamples = data.samples.filter(function(testSample) { return testSample.id == sample; }).sort( function sortDesc(firstParam, secondParam) {
+            return secondParam - firstParam})[0] ;
+        console.log("Test Samples: ", testSamples);
+
+       
+        // Slice Samples to get Top 10
+        let otu_ids = testSamples.otu_ids.slice(0,10);
+        
+        
+        console.log("Top 10: ", otu_ids)
+
+        
+    } )
+}
+
+barchart(940)
