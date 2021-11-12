@@ -5,6 +5,7 @@
 // id="bar" horizontal bar chart
 // id="gauge" gauge
 // id="bubble"  bubble chart
+///////////////////////////////////////////
 
 
 // Read in JSON data
@@ -24,10 +25,7 @@ function getMetadata(sample) {
         Object.entries(metadata).forEach(([key, value]) => {
             demographic.append("h5").text(`${key}:${value}`);
         });
-
-
     });
-
 };
 
 // console.log(getMetadata(940))
@@ -80,6 +78,7 @@ function charts(sample) {
             }
         }
 
+        // Plot new bar chart
         Plotly.newPlot("bar",barData,layout);
 
 
@@ -108,15 +107,38 @@ function charts(sample) {
         
         let layout2 = {
         title: 'Sample Values by OTU ID',
-        showlegend: false,
+        xaxis: {
+            title: {
+              text: 'OTU ID'
+            }
+        },
         height: 600,
         width: 1200
         };
         
+        // Plot new bubble chart
         Plotly.newPlot("bubble", bubbleData, layout2);
 
         
     } )
-}
+};
 
-charts(940)
+charts(940);
+
+
+// Dropdown Menu Function
+
+function getDropDown(ids) {
+
+    let dropDownList = d3.select("#selDataset");
+
+    d3.json("samples.json").then(function (data) {
+        let ids = data.names;
+        console.log(ids);
+        ids.forEach(id => dropDownList.append('option').property('value', id).text(id));
+    });
+
+};
+
+
+getDropDown();
