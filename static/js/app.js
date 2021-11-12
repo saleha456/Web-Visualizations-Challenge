@@ -78,6 +78,30 @@ function barchart(sample) {
 
         Plotly.newPlot("bar",barData,layout);
 
+
+        // Plot Bubble Chart
+
+        var trace1 = {
+            x: sample_values,
+            y: otu_ids_str,
+            mode: 'markers',
+            marker: {
+              size: sample_values,
+              color: otu_ids
+            }
+          };
+          
+          var bubbleData = [trace1];
+          
+          var layout = {
+            title: 'Marker Size',
+            showlegend: false,
+            height: 600,
+            width: 600
+          };
+          
+          Plotly.newPlot("bubble", bubbleData, layout);
+
         
     } )
 }
