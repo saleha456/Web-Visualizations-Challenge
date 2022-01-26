@@ -1,4 +1,4 @@
-# Web Visualization Dashboard
+# Web Visualizations Dashboard
 
 #### Belly Button Biodiversity
 
