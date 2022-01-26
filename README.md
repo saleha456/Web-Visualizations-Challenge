@@ -9,7 +9,7 @@ This challenge uses the [Belly Button Biodiversity dataset](http://robdunnlab.co
 - A demographic section that lists basic demographic information of the selected individual.
 - A dropdown list that updates the charts as you toggle between different individuals.
 
-The dashboard can be found here: [Live Link](https://saleha456.github.io/Web-Visualizations-Challenge/)
+The dashboard can be found here: [Live Link](https://saleha456.github.io/Web-Visualizations-Dashboard/)
 
 ![dashboard](images/dash.png)
 
